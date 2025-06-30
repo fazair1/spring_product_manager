@@ -5,10 +5,13 @@ import com.fauzanirfanto.product_manager.utility.ConstantsMessage;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
-public class ValProductCategoryDTO {
+public class ValProductDTO {
 
     @Pattern(regexp = "^[\\w\\s]{3,50}$", message = ConstantsMessage.VAL_NAMA)
     private String nama;
+
+    @NotNull(message = ConstantsMessage.VAL_CATEGORY)
+    private RespProductCategoryDTO productCategory;
 
     public String getNama() {
         return nama;
@@ -18,4 +21,11 @@ public class ValProductCategoryDTO {
         this.nama = nama;
     }
 
+    public RespProductCategoryDTO getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(RespProductCategoryDTO productCategory) {
+        this.productCategory = productCategory;
+    }
 }
