@@ -71,6 +71,11 @@ public class ProductService implements IService<Product> {
         }
 
         try {
+            Optional<ProductCategory> optionalProductCategory = productCategoryRepo.findById(product.getProductCategory().getId());
+            if (!optionalProductCategory.isPresent()) {
+                return GlobalResponse.dataTidakDitemukan("KPL02FV012",request);
+            }
+
             productRepo.save(product);
         }catch (Exception e) {
 //            LoggingFile.logException("ProductCategoryService","save(ProductCategory productCategory, HttpServletRequest request) -- Line 69 "+ RequestCapture.allRequest(request),e, OtherConfig.getEnableLog());
