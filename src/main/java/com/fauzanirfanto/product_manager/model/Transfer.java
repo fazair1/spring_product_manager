@@ -9,32 +9,36 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(
-        name = "MstInventory",
-        uniqueConstraints = @UniqueConstraint(
-                name = "unq_inventory_product_warehouse",
-                columnNames = {"IDProduct", "IDWarehouse"}
-        )
-)
-public class Inventory {
+@Table(name = "MstTransfer")
+public class Transfer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IDInventory")
+    @Column(name = "IDTransfer")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "IDProduct", foreignKey = @ForeignKey(name = "fk-inventory-to-product"))
+    @JoinColumn(name = "IDProduct", foreignKey = @ForeignKey(name = "fk-transfer-to-product"))
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "IDWarehouse", foreignKey = @ForeignKey(name = "fk-to-warehouse"))
+    @JoinColumn(name = "IDWarehouseIn", foreignKey = @ForeignKey(name = "fk-to-warehouseIn"))
 //    @OnDelete(action = OnDeleteAction.SET_NULL)
-    private Warehouse warehouse;
+    private Warehouse warehouseIn;
+
+    @ManyToOne
+    @JoinColumn(name = "IDWarehouseOut", foreignKey = @ForeignKey(name = "fk-to-warehouseOut"))
+//    @OnDelete(action = OnDeleteAction.SET_NULL)
+    private Warehouse warehouseOut;
 
     @Column(name = "Stock")
     private Integer stock = 0;
+
+    @ManyToOne
+    @JoinColumn(name = "IDStatus", foreignKey = @ForeignKey(name = "fk-to-status"))
+    @OnDelete(action = OnDeleteAction.SET_NULL)
+    private Status status;
 
     @Column(name = "CreatedBy",updatable = false, nullable = false)
     private Long createdBy = 1L;
@@ -98,6 +102,14 @@ public class Inventory {
         this.product = product;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public Integer getStock() {
         return stock;
     }
@@ -106,11 +118,19 @@ public class Inventory {
         this.stock = stock;
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
+    public Warehouse getWarehouseIn() {
+        return warehouseIn;
     }
 
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
+    public void setWarehouseIn(Warehouse warehouseIn) {
+        this.warehouseIn = warehouseIn;
+    }
+
+    public Warehouse getWarehouseOut() {
+        return warehouseOut;
+    }
+
+    public void setWarehouseOut(Warehouse warehouseOut) {
+        this.warehouseOut = warehouseOut;
     }
 }

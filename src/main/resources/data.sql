@@ -1,5 +1,3 @@
-
-
 -- ----------------------------
 -- Records of MstProductCategory
 -- ----------------------------
@@ -88,4 +86,40 @@ SET IDENTITY_INSERT [dbo].[MstInventory] ON
     ;
 
     SET IDENTITY_INSERT [dbo].[MstInventory] OFF
+    ;
+
+-- ----------------------------
+-- Records of MstStatus
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[MstStatus] ON
+    ;
+
+    INSERT INTO [dbo].[MstStatus] ([CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate], [IDStatus], [Nama]) VALUES (N'1', N'2025-03-10 18:32:05.000000', NULL, NULL, N'1', N'In Progress')
+    ;
+
+    INSERT INTO [dbo].[MstStatus] ([CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate], [IDStatus], [Nama]) VALUES (N'1', N'2025-03-10 18:32:05.000000', NULL, NULL, N'2', N'Done')
+    ;
+
+    INSERT INTO [dbo].[MstStatus] ([CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate], [IDStatus], [Nama]) VALUES (N'1', N'2025-03-10 18:32:05.000000', NULL, NULL, N'3', N'Cancelled')
+    ;
+
+    SET IDENTITY_INSERT [dbo].[MstStatus] OFF
+    ;
+
+-- ----------------------------
+-- Records of MstTransfer
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[MstTransfer] ON
+    ;
+
+    INSERT INTO [dbo].[MstTransfer] ([CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate], [IDTransfer], [IDProduct], [IDWarehouseIn], [IDWarehouseOut], [Stock], [IDStatus]) VALUES (N'1', N'2025-03-10 18:32:05.000000', NULL, NULL, N'1', N'1', N'1', N'2', N'2', N'1')
+    ;
+
+    INSERT INTO [dbo].[MstTransfer] ([CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate], [IDTransfer], [IDProduct], [IDWarehouseIn], [IDWarehouseOut], [Stock], [IDStatus]) VALUES (N'1', N'2025-03-10 18:32:05.000000', NULL, NULL, N'2', N'3', N'2', N'3', N'3', N'2')
+    ;
+
+    INSERT INTO [dbo].[MstTransfer] ([CreatedBy], [CreatedDate], [ModifiedBy], [ModifiedDate], [IDTransfer], [IDProduct], [IDWarehouseIn], [IDWarehouseOut], [Stock], [IDStatus]) VALUES (N'1', N'2025-03-10 18:32:05.000000', NULL, NULL, N'3', N'5', N'3', N'1', N'5', N'3')
+    ;
+
+    SET IDENTITY_INSERT [dbo].[MstTransfer] OFF
     ;
