@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "MstWarehouse")
@@ -21,6 +22,15 @@ public class Warehouse {
     @Column(name = "Alamat", nullable = false, length = 50)
     private String alamat;
 
+    @Column(name = "IsDeleted",columnDefinition = ("bit default 0"))
+    private Boolean isDeleted=false;
+
+//    @OneToMany(mappedBy = "warehouseIn", orphanRemoval = false)
+//    private List<Transfer> warehouseInTransfers;
+//
+//    @OneToMany(mappedBy = "warehouseOut", orphanRemoval = false)
+//    private List<Transfer> warehouseOutTransfers;
+
     @Column(name = "CreatedBy",updatable = false, nullable = false)
     private Long createdBy = 1L;
 
@@ -34,6 +44,30 @@ public class Warehouse {
     @Column(name = "ModifiedDate", insertable = false)
     @UpdateTimestamp
     private LocalDateTime modifiedDate;
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    //    public List<Transfer> getWarehouseInTransfers() {
+//        return warehouseInTransfers;
+//    }
+//
+//    public void setWarehouseInTransfers(List<Transfer> warehouseInTransfers) {
+//        this.warehouseInTransfers = warehouseInTransfers;
+//    }
+//
+//    public List<Transfer> getWarehouseOutTransfers() {
+//        return warehouseOutTransfers;
+//    }
+//
+//    public void setWarehouseOutTransfers(List<Transfer> warehouseOutTransfers) {
+//        this.warehouseOutTransfers = warehouseOutTransfers;
+//    }
 
     public String getAlamat() {
         return alamat;
