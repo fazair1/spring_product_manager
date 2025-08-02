@@ -36,7 +36,7 @@ public class GlobalResponse {
     }
 
     public static ResponseEntity<Object> dataHarusUnique(String errorCode,HttpServletRequest request){
-        return new ResponseHandler().handleResponse("Sudah ada Data dengan Nama Tersebut",
+        return new ResponseHandler().handleResponse("Data Harus Unique",
                 HttpStatus.BAD_REQUEST,
                 null,errorCode,request);
     }

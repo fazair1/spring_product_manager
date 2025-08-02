@@ -1,5 +1,6 @@
 package com.fauzanirfanto.product_manager.dto.response;
 
+import com.fauzanirfanto.product_manager.dto.relation.RelProductCategoryDTO;
 import com.fauzanirfanto.product_manager.model.ProductCategory;
 
 public class RespProductDTO {
@@ -8,7 +9,7 @@ public class RespProductDTO {
 
     private String nama;
 
-    private RespProductCategoryDTO productCategory;
+    private RelProductCategoryDTO productCategory;
 
     public Long getId() {
         return id;
@@ -26,11 +27,11 @@ public class RespProductDTO {
         this.nama = nama;
     }
 
-    public RespProductCategoryDTO getProductCategory() {
+    public RelProductCategoryDTO getProductCategory() {
         return productCategory;
     }
 
-    public void setProductCategory(RespProductCategoryDTO productCategory) {
+    public void setProductCategory(RelProductCategoryDTO productCategory) {
         this.productCategory = productCategory;
     }
 }
