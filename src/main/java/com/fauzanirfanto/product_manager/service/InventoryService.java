@@ -77,17 +77,17 @@ public class InventoryService implements IService<Inventory> {
         try {
             Optional<Product> optionalProduct = productRepo.findById(inventory.getProduct().getId());
             if (!optionalProduct.isPresent()) {
-                return GlobalResponse.dataTidakDitemukan("KPL04FV012",request);
+                return GlobalResponse.dataTidakDitemukan("PM04FV012",request);
             }
 
             Optional<Warehouse> optionalWarehouse = warehouseRepo.findById(inventory.getWarehouse().getId());
             if (!optionalWarehouse.isPresent()) {
-                return GlobalResponse.dataTidakDitemukan("KPL04FV013",request);
+                return GlobalResponse.dataTidakDitemukan("PM04FV013",request);
             }
 
             Optional<Inventory> optionalInventory = inventoryRepo.findByProductIdAndWarehouseId(inventory.getProduct().getId(), inventory.getWarehouse().getId());
             if (optionalInventory.isPresent()) {
-                return GlobalResponse.dataHarusUnique("KPL04FV014",request);
+                return GlobalResponse.dataHarusUnique("PM04FV014",request);
             }
 
             inventoryRepo.save(inventory);
@@ -115,12 +115,12 @@ public class InventoryService implements IService<Inventory> {
 
             Optional<Product> optionalProduct = productRepo.findById(inventory.getProduct().getId());
             if (!optionalProduct.isPresent()) {
-                return GlobalResponse.dataTidakDitemukan("KPL04FV023",request);
+                return GlobalResponse.dataTidakDitemukan("PM04FV023",request);
             }
 
             Optional<Warehouse> optionalWarehouse = warehouseRepo.findById(inventory.getWarehouse().getId());
             if (!optionalWarehouse.isPresent()) {
-                return GlobalResponse.dataTidakDitemukan("KPL04FV024",request);
+                return GlobalResponse.dataTidakDitemukan("PM04FV024",request);
             }
 
             Optional<Inventory> optionalInventoryUnique = inventoryRepo.findByProductIdAndWarehouseId(inventory.getProduct().getId(), inventory.getWarehouse().getId());
@@ -129,7 +129,7 @@ public class InventoryService implements IService<Inventory> {
                 Inventory nextInventoryUnique = optionalInventoryUnique.get();
 
                 if (!nextInventoryUnique.getId().equals(id)) {
-                    return GlobalResponse.dataHarusUnique("KPL04FV025",request);
+                    return GlobalResponse.dataHarusUnique("PM04FV025",request);
                 }
             }
 

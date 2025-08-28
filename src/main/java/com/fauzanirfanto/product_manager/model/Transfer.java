@@ -18,19 +18,19 @@ public class Transfer {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "IDProduct", foreignKey = @ForeignKey(name = "fk-transfer-to-product"))
+    @JoinColumn(name = "IDInventory", foreignKey = @ForeignKey(name = "fk-transfer-to-inventory"))
     @OnDelete(action = OnDeleteAction.SET_NULL)
-    private Product product;
+    private Inventory inventory;
 
     @ManyToOne
-    @JoinColumn(name = "IDWarehouseIn", foreignKey = @ForeignKey(name = "fk-to-warehouseIn"))
+    @JoinColumn(name = "IDWarehouseFrom", foreignKey = @ForeignKey(name = "fk-to-warehouseFrom"))
 //    @OnDelete(action = OnDeleteAction.SET_NULL)
-    private Warehouse warehouseIn;
+    private Warehouse warehouseFrom;
 
     @ManyToOne
-    @JoinColumn(name = "IDWarehouseOut", foreignKey = @ForeignKey(name = "fk-to-warehouseOut"))
+    @JoinColumn(name = "IDWarehouseTo", foreignKey = @ForeignKey(name = "fk-to-IDWarehouseTo"))
 //    @OnDelete(action = OnDeleteAction.SET_NULL)
-    private Warehouse warehouseOut;
+    private Warehouse warehouseTo;
 
     @Column(name = "Stock")
     private Integer stock = 0;
@@ -94,12 +94,28 @@ public class Transfer {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
+    public Inventory getInventory() {
+        return inventory;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public Warehouse getWarehouseFrom() {
+        return warehouseFrom;
+    }
+
+    public void setWarehouseFrom(Warehouse warehouseFrom) {
+        this.warehouseFrom = warehouseFrom;
+    }
+
+    public Warehouse getWarehouseTo() {
+        return warehouseTo;
+    }
+
+    public void setWarehouseTo(Warehouse warehouseTo) {
+        this.warehouseTo = warehouseTo;
     }
 
     public Status getStatus() {
@@ -116,21 +132,5 @@ public class Transfer {
 
     public void setStock(Integer stock) {
         this.stock = stock;
-    }
-
-    public Warehouse getWarehouseIn() {
-        return warehouseIn;
-    }
-
-    public void setWarehouseIn(Warehouse warehouseIn) {
-        this.warehouseIn = warehouseIn;
-    }
-
-    public Warehouse getWarehouseOut() {
-        return warehouseOut;
-    }
-
-    public void setWarehouseOut(Warehouse warehouseOut) {
-        this.warehouseOut = warehouseOut;
     }
 }
