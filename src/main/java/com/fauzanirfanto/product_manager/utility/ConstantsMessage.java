@@ -7,5 +7,6 @@ public class ConstantsMessage {
     public final static String VAL_DESKRIPSI = "Alfanumerik dengan spasi min 3 maks 100 karakter";
     public final static String VAL_RELATION = "Data tidak boleh kosong";
     public final static String VAL_NUMBER = "Nomor harus positive";
+    public final static String VAL_NOT_NULL = "Data tidak boleh kosong";
 
 }

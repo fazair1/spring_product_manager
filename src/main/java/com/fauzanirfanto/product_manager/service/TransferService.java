@@ -3,6 +3,8 @@ package com.fauzanirfanto.product_manager.service;
 import com.fauzanirfanto.product_manager.core.IService;
 import com.fauzanirfanto.product_manager.dto.response.RespInventoryDTO;
 import com.fauzanirfanto.product_manager.dto.response.RespTransferDTO;
+import com.fauzanirfanto.product_manager.dto.validation.ValInventoryDTO;
+import com.fauzanirfanto.product_manager.dto.validation.ValTransferDTO;
 import com.fauzanirfanto.product_manager.handler.GlobalResponse;
 import com.fauzanirfanto.product_manager.model.*;
 import com.fauzanirfanto.product_manager.repositories.InventoryRepo;
@@ -82,10 +84,10 @@ public class TransferService implements IService<Transfer> {
                 return GlobalResponse.dataTidakDitemukan("PM05FV012",request);
             }
 
-            Optional<Warehouse> optionalDatabaseWarehouseFrom = warehouseRepo.findById(transfer.getWarehouseFrom().getId());
-            if (!optionalDatabaseWarehouseFrom.isPresent()) {
-                return GlobalResponse.dataTidakDitemukan("PM05FV013",request);
-            }
+//            Optional<Warehouse> optionalDatabaseWarehouseFrom = warehouseRepo.findById(transfer.getWarehouseFrom().getId());
+//            if (!optionalDatabaseWarehouseFrom.isPresent()) {
+//                return GlobalResponse.dataTidakDitemukan("PM05FV013",request);
+//            }
 
             Optional<Warehouse> optionalDatabaseWarehouseTo = warehouseRepo.findById(transfer.getWarehouseTo().getId());
             if (!optionalDatabaseWarehouseTo.isPresent()) {
@@ -107,7 +109,7 @@ public class TransferService implements IService<Transfer> {
 
         }catch (Exception e) {
 //            LoggingFile.logException("ProductCategoryService","save(ProductCategory productCategory, HttpServletRequest request) -- Line 69 "+ RequestCapture.allRequest(request),e, OtherConfig.getEnableLog());
-            return GlobalResponse.dataGagalDisimpan("PM04FE016",request);
+            return GlobalResponse.dataGagalDisimpan("PM05FE016",request);
 
         }
         return GlobalResponse.dataBerhasilDisimpan(request);
@@ -172,7 +174,7 @@ public class TransferService implements IService<Transfer> {
             }
         }catch (Exception e) {
 //            LoggingFile.logException("ProductCategoryService","update(Long id, ProductCategory productCategory, HttpServletRequest request) -- Line 102 "+RequestCapture.allRequest(request),e,OtherConfig.getEnableLog());
-            return GlobalResponse.dataGagalDiubah("PM04FE026",request);
+            return GlobalResponse.dataGagalDiubah("PM05FE026",request);
         }
         return GlobalResponse.dataBerhasilDiubah(request);
     }
@@ -199,11 +201,11 @@ public class TransferService implements IService<Transfer> {
         try {
             optionalTransfer = transferRepo.findById(id);
             if (!optionalTransfer.isPresent()) {
-                return GlobalResponse.dataTidakDitemukan("PM04FV041",request);
+                return GlobalResponse.dataTidakDitemukan("PM05FV041",request);
             }
         }catch (Exception e) {
 //            LoggingFile.logException("ProductCategoryService","findById(Long id, HttpServletRequest request) -- Line 144 "+RequestCapture.allRequest(request),e,OtherConfig.getEnableLog());
-            return GlobalResponse.terjadiKesalahan("PM04FE042",request);
+            return GlobalResponse.terjadiKesalahan("PM05FE042",request);
         }
         return GlobalResponse.dataDitemukan(modelMapper.map(optionalTransfer.get(),RespTransferDTO.class),request);
     }
@@ -221,7 +223,7 @@ public class TransferService implements IService<Transfer> {
                     Integer stockValue = Integer.parseInt(value);
                     page = transferRepo.findByStock(stockValue, pageable);
                 } catch (Exception e) {
-                    return GlobalResponse.dataTidakValid("PM04FV051",request);
+                    return GlobalResponse.dataTidakValid("PM05FV051",request);
                 }
                 break;
             default: page = transferRepo.findAll(pageable);
@@ -236,6 +238,11 @@ public class TransferService implements IService<Transfer> {
     public List<RespTransferDTO> convertToRespTransferDTO (List<Transfer> transfers) {
         List<RespTransferDTO> respTransferDTOList = modelMapper.map(transfers, new TypeToken<List<RespTransferDTO>>() {}.getType());
         return respTransferDTOList;
+    }
+
+    public Transfer convertToEntity (ValTransferDTO valTransferDTO) {
+        Transfer transfer = modelMapper.map(valTransferDTO, Transfer.class);
+        return transfer;
     }
 
 }
