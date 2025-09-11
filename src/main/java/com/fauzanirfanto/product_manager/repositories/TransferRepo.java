@@ -29,6 +29,12 @@ public interface TransferRepo extends JpaRepository<Transfer, Long> {
     @Query(value = "SELECT x FROM Transfer x WHERE lower(x.warehouseTo.nama) LIKE lower(concat('%',?1,'%'))")
     public List<Transfer> cariWarehouseToTransfer(String warehouse);
 
+    @Query(value = "SELECT x FROM Transfer x WHERE lower(x.status.nama) LIKE lower(concat('%',?1,'%'))")
+    public Page<Transfer> cariStatusTransfer(String status, Pageable pageable);
+
+    @Query(value = "SELECT x FROM Transfer x WHERE lower(x.status.nama) LIKE lower(concat('%',?1,'%'))")
+    public List<Transfer> cariStatusTransfer(String status);
+
     public Page<Transfer> findByStock(Integer stock, Pageable pageable);
 
     public List<Transfer> findByStock(Integer stock);

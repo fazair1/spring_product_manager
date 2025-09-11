@@ -218,6 +218,7 @@ public class TransferService implements IService<Transfer> {
             case "product": page = transferRepo.cariProductTransfer(value,pageable);break;
             case "warehouseFrom": page = transferRepo.cariWarehouseFromTransfer(value,pageable);break;
             case "warehouseTo": page = transferRepo.cariWarehouseToTransfer(value,pageable);break;
+            case "status": page = transferRepo.cariStatusTransfer(value,pageable);break;
             case "stock":
                 try {
                     Integer stockValue = Integer.parseInt(value);

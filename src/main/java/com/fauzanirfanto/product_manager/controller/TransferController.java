@@ -73,6 +73,7 @@ public class TransferController {
             case "product":sortBy = "product";break;
             case "warehouseFrom":sortBy = "warehouseFrom";break;
             case "warehouseTo":sortBy = "warehouseTo";break;
+            case "status":sortBy = "status";break;
             case "stock":sortBy = "stock";break;
             default:sortBy = "id";
         }
